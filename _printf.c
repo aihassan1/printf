@@ -3,7 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 /**
- * _printf - A customized printf function that supports %c and %s specifiers 
+ * _printf - A customized printf function that supports %c and %s specifiers
  * @format: Format string
  * @...: Additional arguments.
  * Return: Number of characters which was printed.
