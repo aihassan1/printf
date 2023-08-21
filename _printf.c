@@ -14,6 +14,11 @@ int i, chars_printed_counter = 0, onechar;
 char *string = NULL;
 va_list args;
 va_start(args, format);
+if (format == NULL)
+{
+write(1, "(null)", strlen("(null)"));
+return (-3);
+}
 for (i = 0; format[i] != '\0'; i++)
 {
 if (format[i] == '%')
