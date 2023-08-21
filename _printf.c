@@ -1,0 +1,46 @@
+#include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
+int _printf(const char *format, ...)
+{
+int i, chars_printed_counter = 0, onechar;
+char *string = NULL;
+va_list args;
+va_start(args, format);
+for (i = 0; format[i] != '\0'; i++)
+{
+if (format[i] == '%')
+{
+if (format[i + 1] == 'c')
+{
+onechar = va_arg(args, int);
+write(1, &onechar, sizeof(char));
+i++;
+chars_printed_counter++;
+}
+else if (format[i + 1] == 's')
+{
+string = va_arg(args, char*);
+write(1, string, strlen(string));
+i++;
+chars_printed_counter += strlen(string);
+}
+else if (format[i + 1] == '%')
+{
+write(1, "%", sizeof(char));
+i++;
+chars_printed_counter++;
+}
+}
+else
+{
+onechar = format[i];
+write(1, &onechar, sizeof(char));
+chars_printed_counter++;
+}
+}
+va_end(args);
+return (chars_printed_counter);
+}
