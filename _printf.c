@@ -2,7 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-
+/**
+ * _printf - A customized printf function that supports %c and %s specifiers 
+ * @format: Format string
+ * @...: Additional arguments.
+ * Return: Number of characters which was printed.
+ */
 int _printf(const char *format, ...)
 {
 int i, chars_printed_counter = 0, onechar;
