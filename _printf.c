@@ -71,7 +71,7 @@ int _printf(const char *format, ...)
 	  else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 	    {
 	      number = va_arg(args, int);
-	      _int_to_string(buf, sizeof(buf), number);
+	      sprintf(buf, "%d", number);
 	      write(1, buf, strlen(buf));
 	      i += 1;
 	      chars_printed_counter++;
@@ -105,38 +105,3 @@ int _printf(const char *format, ...)
   return chars_printed_counter;
 }
 
-
-int _int_to_string(char *buf, size_t bufsize, int n)
-{
-  char *start;
-  if (n < 0) {
-    if (!bufsize)
-      return -1;
-    *buf++ = '-';
-    bufsize--;
-  }
-  start = buf;
-  do {
-    int digit;
-    if (!bufsize)
-      return -1;
-    digit = n % 10;
-    if (digit < 0)
-      digit *= -1;
-    *buf++ = digit + '0';
-    bufsize--;
-    n /= 10;
-  } while (n);
-  if (!bufsize)
-    return -1;
-  *buf = 0;
-  --buf;
-  while (start < buf) {
-    char a = *start;
-    *start = *buf;
-    *buf = a;
-    ++start;
-    --buf;
-  }
-  return 0;
-}
