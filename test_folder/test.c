@@ -28,5 +28,8 @@ int main(void)
   len2 = printf("Let's print a mix of characters and strings: %c %s %c %s\n", 'X', "Hello", 'Y', "World!");
   printf("Length:[%d, %d]\n", len, len2);
 
+
+
+  
   return (0);
 }
