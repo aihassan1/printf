@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <stddef.h> 
 
 #define FLAG_MINUS 1
 #define FLAG_PLUS 2
@@ -16,6 +17,7 @@
 
 /* FUNCTIONS */
 
+int _int_to_string(char *buf, size_t bufsize, int n);
 int _printf(const char *format, ...);
 int get_flags(const char *format, int *idx);
 int get_width(const char *format, int *idx, va_list list);

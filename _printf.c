@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include "main.h"
 
 /**
  * _printf - Custom printf function
@@ -70,7 +71,7 @@ int _printf(const char *format, ...)
 	  else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 	    {
 	      number = va_arg(args, int);
-	      sprintf(buf, "%d", number);
+	      _int_to_string(buf, sizeof(buf), number);
 	      write(1, buf, strlen(buf));
 	      i += 1;
 	      chars_printed_counter++;
@@ -102,4 +103,55 @@ int _printf(const char *format, ...)
     }
 
   return chars_printed_counter;
+}
+
+
+/* Prototype for your custom _printf function */
+int main() {
+  /* Test %d */
+  _printf("Test %d: %d\n", 1, 123);
+  _printf("Test %d: %d\n", 2, -456);
+  _printf("Test %d: %d\n", 3, 0);
+
+  /* Test %i */
+  _printf("Test %i: %i\n", 4, 789);
+  _printf("Test %i: %i\n", 5, -101112);
+  _printf("Test %i: %i\n", 6, 0);
+
+  return 0;
+}
+
+int _int_to_string(char *buf, size_t bufsize, int n)
+{
+  char *start;
+  if (n < 0) {
+    if (!bufsize)
+      return -1;
+    *buf++ = '-';
+    bufsize--;
+  }
+  start = buf;
+  do {
+    int digit;
+    if (!bufsize)
+      return -1;
+    digit = n % 10;
+    if (digit < 0)
+      digit *= -1;
+    *buf++ = digit + '0';
+    bufsize--;
+    n /= 10;
+  } while (n);
+  if (!bufsize)
+    return -1;
+  *buf = 0;
+  --buf;
+  while (start < buf) {
+    char a = *start;
+    *start = *buf;
+    *buf = a;
+    ++start;
+    --buf;
+  }
+  return 0;
 }
