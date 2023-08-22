@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+
 /**
  * _printf - Custom printf function
  * @format: Format string
@@ -10,7 +11,7 @@
  */
 int _printf(const char *format, ...)
 {
-  int i, chars_printed_counter = 0, onechar, number;
+  int i, chars_printed_counter = 0, onechar;
   char *string = NULL;
   va_list args;
   va_start(args, format);
@@ -48,9 +49,10 @@ int _printf(const char *format, ...)
 		}
 	      else
 		{
+		 
 		  write(1, string, strlen(string));
 		  i += 1;
-		  chars_printed_counter += strlen(string) ;
+		  chars_printed_counter += strlen(string);
 		}
 	    }
 	  else if (format[i + 1] == '%')
@@ -60,17 +62,15 @@ int _printf(const char *format, ...)
 	      i += 1;
 	      chars_printed_counter++;
 	    }
-
-else
+	 
+	  else
 	    {
 	      /* Handle unrecognized specifier */
 	      write(1, &format[i], 2);
 	      i++;
 	      chars_printed_counter += 2;
 	    }
-
 	}
-
       else
 	{
 	  /* Write non-specifier character */
