@@ -16,14 +16,18 @@ int get_flags(const char *format, int *idx)
       const int flags_val[] = {FLAG_MINUS, FLAG_PLUS, FLAG_0, FLAG_HASHTAG, FLAG_SPACE, 0};
       i = *idx + 1;
       
-      for (; format[i]; i++) {
-             for (x = 0; flags[x] != '\0'; x++) {
-                    if (format[i] == flags[x]) {
+      for (; format[i]; i++)
+      {
+             for (x = 0; flags[x] != '\0'; x++)
+	     {
+                    if (format[i] == flags[x])
+		    {
                           f |= flags_val[x];
                           break;
                     }
              }
-             if (!flags[x]) {
+             if (!flags[x])
+	     {
                     break;
              }
       }
