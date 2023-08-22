@@ -3,7 +3,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
-
+#include <string.h>
 
 #define FLAG_MINUS 1
 #define FLAG_PLUS 2
