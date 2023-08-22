@@ -103,17 +103,3 @@ int _printf(const char *format, ...)
 
   return chars_printed_counter;
 }
-int main()
-{
-  /* Test %d */
-  printf("Test %d: %d\n", 1, 123);
-  _printf("Test %d: %d\n", 2, -456);
-  _printf("Test %d: %d\n", 3, 0);
-
-  /* Test %i */
-  _printf("Test %i: %i\n", 4, 789);
-  _printf("Test %i: %i\n", 5, -101112);
-  _printf("Test %i: %i\n", 6, 0);
-
-  return 0;
-}
