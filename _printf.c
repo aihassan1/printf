@@ -61,17 +61,7 @@ int _printf(const char *format, ...)
 	      chars_printed_counter++;
 	    }
 
-	  else if (format[i + 1] == 'd' || format[i + 1] == 'i')
-	    {
-	      number = va_arg(args, int);
-	      char buf[1024];
-	      sprintf(buf, "%d", number);
-	      write(1, buf, strlen(buf));
-	      i += 1;
-	      chars_printed_counter++;
-	    }
-
-	  else
+else
 	    {
 	      /* Handle unrecognized specifier */
 	      write(1, &format[i], 2);
