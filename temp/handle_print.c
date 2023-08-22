@@ -15,7 +15,7 @@
 int handle_print(const char *ft, int *indx, va_list list, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int i, len = 0, printed_ch = -1;
+int i, len = 0, printed_ch = -1;
 	ft_t ft_types[] = {
 		{'c', print_char}, {'s', print_string}, {'%', print_percent},
 		{'i', print_int}, {'d', print_int}, {'b', print_binary},

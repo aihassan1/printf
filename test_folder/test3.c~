@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+  char buffer[50];  // Buffer to store the formatted string
+
+  int num = 123;
+  double dbl = 3.14;
+  char str[] = "Hello, world!";
+
+  // Format the values and store in the buffer
+  int length = sprintf(buffer, "Integer: %d, Double: %.2f, String: %s", num, dbl, str);
+
+  printf("Formatted string: %s\n", buffer);
+  printf("Length: %d\n", length);  // Number of characters written
+
+  return 0;
+}

@@ -11,8 +11,9 @@
  */
 int _printf(const char *format, ...)
 {
-  int i, chars_printed_counter = 0, onechar;
+  int i, chars_printed_counter = 0, onechar, number;
   char *string = NULL;
+  char buf[1024];
   va_list args;
   va_start(args, format);
 
@@ -49,10 +50,10 @@ int _printf(const char *format, ...)
 		}
 	      else
 		{
-		  size_t string_length = strlen(string);
-		  write(1, string, string_length);
+		 
+		  write(1, string, strlen(string));
 		  i += 1;
-		  chars_printed_counter += string_length;
+		  chars_printed_counter += strlen(string);
 		}
 	    }
 	  else if (format[i + 1] == '%')
@@ -62,6 +63,7 @@ int _printf(const char *format, ...)
 	      i += 1;
 	      chars_printed_counter++;
 	    }
+	 
 	  else
 	    {
 	      /* Handle unrecognized specifier */

@@ -11,8 +11,9 @@
 */
 int _printf(const char *format, ...)
 {
-int i, chars_printed_counter = 0, onechar;
+int i, chars_printed_counter = 0, onechar, number;
 char *string = NULL;
+char buf[1024];
 va_list args;
 va_start(args, format);
 
@@ -27,17 +28,18 @@ for (i = 0; format[i] != '\0'; i++)
 {
 if (format[i] == '%')
 {
+/* Handle %c specifier */
 if (format[i + 1] == 'c')
 {
-/* Handle %c specifier */
 onechar = va_arg(args, int);
 write(1, &onechar, sizeof(char));
 i += 1;
 chars_printed_counter++;
 }
+
+/* Handle %s specifier  */
 else if (format[i + 1] == 's')
 {
-/* Handle %s specifier  */
 string = va_arg(args, char*);
 if (string == NULL)
 {
@@ -60,9 +62,21 @@ write(1, "%", sizeof(char));
 i += 1;
 chars_printed_counter++;
 }
+
+/*handle %d specifier*/
+else if (format[i + 1] == 'd' || format[i + 1] == 'i')
+{
+number = va_arg(args, int);
+char buf[1024];
+sprintf(buf, "%d", number);
+write(1, buf, strlen(buf));
+i += 1;
+chars_printed_counter++;
+}
+
+/* Handle unrecognized specifier */
 else
 {
-/* Handle unrecognized specifier */
 write(1, &format[i], 2);
 i++;
 chars_printed_counter += 2;
