@@ -11,8 +11,9 @@
  */
 int _printf(const char *format, ...)
 {
-  int i, chars_printed_counter = 0, onechar;
+  int i, chars_printed_counter = 0, onechar, number;
   char *string = NULL;
+  char buf[1024] = {0};
   va_list args;
   va_start(args, format);
 
@@ -47,6 +48,19 @@ int _printf(const char *format, ...)
 		  i += 1;
 		  chars_printed_counter += strlen("(null)");
 		}
+
+	      /* Handle %d & %i specifiers */
+	      else if (format[i + 1] == 'd' || format[i + 1] == 'i')
+		{
+		  number = va_arg(args, int);
+		  char buf[1024];
+		  sprintf(buf, "%d", number);
+		  write(1, buf, strlen(buf));
+		  i += 1;
+		  chars_printed_counter++;
+		}
+
+	      
 	      else
 		{
 		 
