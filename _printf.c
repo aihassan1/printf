@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+
 /**
 * _printf - A customized printf function that supports %c and %s specifiers
 * @format: Format string
