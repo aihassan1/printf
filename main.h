@@ -22,6 +22,7 @@ int _printf(const char *format, ...);
 int get_flags(const char *format, int *idx);
 int get_width(const char *format, int *idx, va_list list);
 int get_size(const char *format, int *idx);
+int get_precision(const char *format, int *indx, va_list list);
 
 int is_digit(char);
 int _strlen(char *s);
