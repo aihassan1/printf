@@ -28,7 +28,7 @@ int _strlen(char *s);
 int is_printable(char);
 int append_hexa_code(char, char[], int);
 
-long int convert_size_unsigned(unsigned long int numb1, int size);
+long int convert_size_unsgnd(unsigned long int numb1, int size);
 long int convert_size_number(long int numb, int size);
 
 
