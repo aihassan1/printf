@@ -11,9 +11,9 @@
  */
 int _printf(const char *format, ...)
 {
+  char buf[1024];
   int i, chars_printed_counter = 0, onechar, number;
   char *string = NULL;
-  char buf[1024] = {0};
   va_list args;
   va_start(args, format);
 
@@ -49,17 +49,6 @@ int _printf(const char *format, ...)
 		  chars_printed_counter += strlen("(null)");
 		}
 
-	      /* Handle %d & %i specifiers */
-	      else if (format[i + 1] == 'd' || format[i + 1] == 'i')
-		{
-		  number = va_arg(args, int);
-		  char buf[1024];
-		  sprintf(buf, "%d", number);
-		  write(1, buf, strlen(buf));
-		  i += 1;
-		  chars_printed_counter++;
-		}
-
 	      
 	      else
 		{
@@ -77,6 +66,16 @@ int _printf(const char *format, ...)
 	      chars_printed_counter++;
 	    }
 	 
+	  /* Handle %d, %i specifiers */
+	  else if (format[i + 1] == 'd' || format[i + 1] == 'i')
+	    {
+	      number = va_arg(args, int);
+	      sprintf(buf, "%d", number);
+	      write(1, buf, strlen(buf));
+	      i += 1;
+	      chars_printed_counter++;
+	    }
+
 	  else
 	    {
 	      /* Handle unrecognized specifier */
@@ -103,4 +102,18 @@ int _printf(const char *format, ...)
     }
 
   return chars_printed_counter;
+}
+int main()
+{
+  /* Test %d */
+  printf("Test %d: %d\n", 1, 123);
+  _printf("Test %d: %d\n", 2, -456);
+  _printf("Test %d: %d\n", 3, 0);
+
+  /* Test %i */
+  _printf("Test %i: %i\n", 4, 789);
+  _printf("Test %i: %i\n", 5, -101112);
+  _printf("Test %i: %i\n", 6, 0);
+
+  return 0;
 }
