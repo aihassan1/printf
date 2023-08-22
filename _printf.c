@@ -23,7 +23,6 @@ if (format == NULL)
 write(1, "(null)", strlen("(null)"));
 return (-1);
 }
-
 for (i = 0; format[i] != '\0'; i++)
 {
 if (format[i] == '%')
@@ -36,7 +35,6 @@ write(1, &onechar, sizeof(char));
 i += 1;
 chars_printed_counter++;
 }
-
 /* Handle %s specifier  */
 else if (format[i + 1] == 's')
 {
@@ -57,12 +55,10 @@ chars_printed_counter += strlen(string);
 }
 else if (format[i + 1] == '%')
 {
-
 write(1, "%", sizeof(char));
 i += 1;
 chars_printed_counter++;
 }
-
 /*handle %d specifier*/
 else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 {
@@ -73,7 +69,6 @@ write(1, buf, strlen(buf));
 i += 1;
 chars_printed_counter++;
 }
-
 /* Handle unrecognized specifier */
 else
 {
@@ -90,9 +85,7 @@ write(1, &onechar, sizeof(char));
 chars_printed_counter++;
 }
 }
-
 va_end(args);
-
 if (chars_printed_counter < 0)
 {
 /* Handle overflow */
