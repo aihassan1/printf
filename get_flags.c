@@ -10,7 +10,8 @@
 int get_flags(const char *format, int *idx)
 {
       int f = 0;
-      int i, x;
+      int i;
+      int x;
       const char flags[] = {'-', '+', '0', '#', ' ', '\0'};
       const int flags_val[] = {FLAG_MINUS, FLAG_PLUS, FLAG_0, FLAG_HASHTAG, FLAG_SPACE, 0};
       i = *idx + 1;
@@ -26,7 +27,9 @@ int get_flags(const char *format, int *idx)
                     }
              }
              if (!flags[x])
+	     {
                     break;
+             }
       }
 
       *idx = i - 1;
