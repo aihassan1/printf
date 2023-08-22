@@ -4,20 +4,19 @@
 #include <unistd.h>
 
 /**
- * _printf - Custom printf function
+ * _printf - A customized printf function that supports %c and %s specifiers
  * @format: Format string
- *
- * Return: Number of characters printed
+ * @...: Additional arguments.
+ * Return: Number of characters which was printed.
  */
 int _printf(const char *format, ...)
 {
-  int i, chars_printed_counter = 0, onechar, number;
+  int i, chars_printed_counter = 0, onechar;
   char *string = NULL;
-  char buf[1024];
   va_list args;
   va_start(args, format);
 
-  /* Handle case where format string is NULL */
+  /* Handling case1 where format string is NULL  */
   if (format == NULL)
     {
       write(1, "(null)", strlen("(null)"));
@@ -38,19 +37,17 @@ int _printf(const char *format, ...)
 	    }
 	  else if (format[i + 1] == 's')
 	    {
-	      /* Handle %s specifier */
+	      /* Handle %s specifier  */
 	      string = va_arg(args, char*);
-
 	      if (string == NULL)
 		{
-		  /* Handle NULL string */
+		  /* Handle NULL string  */
 		  write(1, "(null)", strlen("(null)"));
 		  i += 1;
 		  chars_printed_counter += strlen("(null)");
 		}
 	      else
 		{
-		 
 		  write(1, string, strlen(string));
 		  i += 1;
 		  chars_printed_counter += strlen(string);
@@ -58,12 +55,11 @@ int _printf(const char *format, ...)
 	    }
 	  else if (format[i + 1] == '%')
 	    {
-	      /* Handle %% specifier */
+
 	      write(1, "%", sizeof(char));
 	      i += 1;
 	      chars_printed_counter++;
 	    }
-	 
 	  else
 	    {
 	      /* Handle unrecognized specifier */
@@ -86,8 +82,7 @@ int _printf(const char *format, ...)
   if (chars_printed_counter < 0)
     {
       /* Handle overflow */
-      return -1;
+      return (-1);
     }
-
-  return chars_printed_counter;
+  return (chars_printed_counter);
 }
